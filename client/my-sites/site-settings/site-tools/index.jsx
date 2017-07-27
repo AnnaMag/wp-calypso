@@ -52,13 +52,17 @@ class SiteTools extends Component {
 			showDeleteContent,
 			showDeleteSite,
 			showThemeSetup,
+			showDisconnectSite,
 		} = this.props;
 
 		const changeAddressLink = `/domains/manage/${ siteSlug }`;
 		const themeSetupLink = `/settings/theme-setup/${ siteSlug }`;
 		const startOverLink = `/settings/start-over/${ siteSlug }`;
 		const deleteSiteLink = `/settings/delete-site/${ siteSlug }`;
+		const disconnectSiteLink = `/settings/disconnect-site/${ siteSlug }`;
 
+		const disconnectSiteTitle = translate( 'Disconnect your site' );
+		const disconnectSiteText = translate( 'Disconnect the site from Jetpack.' );
 		const themeSetupText = translate( 'Automatically make your site look like your theme\'s demo.' );
 		const changeSiteAddress = translate( 'Change your site address' );
 		const themeSetup = translate( 'Theme setup' );
@@ -129,6 +133,13 @@ class SiteTools extends Component {
 						isWarning
 					/>
 				}
+				{ showDisconnectSite &&
+					<SiteToolsLink
+						href={ disconnectSiteLink }
+						title={ disconnectSiteTitle }
+						description={ disconnectSiteText }
+						/>
+					}
 				<DeleteSiteWarningDialog
 					isVisible={ this.state.showDialog }
 					onClose={ this.closeDialog } />

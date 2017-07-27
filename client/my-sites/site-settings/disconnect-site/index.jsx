@@ -9,16 +9,14 @@ import page from 'page';
 /**
  * Internal dependencies
  */
-import DataSynchronization from './data-synchronization';
-import DisconnectSiteLink from './disconnect-site-link';
 import DocumentHead from 'components/data/document-head';
-import HeaderCake from 'components/header-cake';
 import Main from 'components/main';
-import SiteOwnership from './site-ownership';
+import FeatureQuestionnaire from './Feature-questionnaire';
 import { getSelectedSiteId, getSelectedSiteSlug } from 'state/ui/selectors';
 import { isJetpackSite } from 'state/sites/selectors';
+import FormattedHeader from 'components/formatted-header';
 
-class ManageConnection extends Component {
+class DisconnectSite extends Component {
 	componentDidMount() {
 		this.verifySiteIsJetpack();
 	}
@@ -41,18 +39,14 @@ class ManageConnection extends Component {
 
 	render() {
 		const { translate } = this.props;
-
 		return (
-			<Main className="manage-connection site-settings">
+			<Main className="disconnect-site site-settings">
 				<DocumentHead title={ translate( 'Site Settings' ) } />
-
-				<HeaderCake onClick={ this.redirectToGeneral }>
-					{ translate( 'Manage Connection' ) }
-				</HeaderCake>
-
-				<SiteOwnership />
-				<DataSynchronization />
-				<DisconnectSiteLink />
+				<FormattedHeader
+								headerText="Disconnect Site"
+								subHeaderText="Tell us why you want to disconnect your site from Wordpress.com."
+							/>
+				<FeatureQuestionnaire />
 			</Main>
 		);
 	}
@@ -63,4 +57,4 @@ export default connect(
 		siteIsJetpack: isJetpackSite( state, getSelectedSiteId( state ) ),
 		siteSlug: getSelectedSiteSlug( state ),
 	} )
-)( localize( ManageConnection ) );
+)( localize( DisconnectSite ) );
