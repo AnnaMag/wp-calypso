@@ -1,3 +1,4 @@
+/** @format */
 /**
  * External dependencies
  */
@@ -43,18 +44,16 @@ class DisconnectSite extends Component {
 			<Main className="disconnect-site why site-settings">
 				<DocumentHead title={ translate( 'Site Settings' ) } />
 				<FormattedHeader
-								headerText="Disconnect Site"
-								subHeaderText="Tell us why you want to disconnect your site from Wordpress.com."
-							/>
+					headerText="Disconnect Site"
+					subHeaderText="Tell us why you want to disconnect your site from Wordpress.com."
+				/>
 				<DisconnectReasonsMenu />
 			</Main>
 		);
 	}
 }
 
-export default connect(
-	( state ) => ( {
-		siteIsJetpack: isJetpackSite( state, getSelectedSiteId( state ) ),
-		siteSlug: getSelectedSiteSlug( state ),
-	} )
-)( localize( DisconnectSite ) );
+export default connect( state => ( {
+	siteIsJetpack: isJetpackSite( state, getSelectedSiteId( state ) ),
+	siteSlug: getSelectedSiteSlug( state ),
+} ) )( localize( DisconnectSite ) );

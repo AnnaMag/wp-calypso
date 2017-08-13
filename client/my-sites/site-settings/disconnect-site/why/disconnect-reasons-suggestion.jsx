@@ -1,3 +1,4 @@
+/** @format */
 /**
  * External dependencies
  */
@@ -28,12 +29,12 @@ class DisconnectReasonsSuggestion extends Component {
 		this.state = state;
 	}
 
-	_logReasonFollowUp = ( option ) => {
+	_logReasonFollowUp = option => {
 		this.setState( {
 			childSelected: option.value,
 		} );
-	}
-	setOptions = ( optionValue ) => {
+	};
+	setOptions = optionValue => {
 		let options = [];
 		switch ( optionValue ) {
 			case 'missingFeature':
@@ -46,64 +47,62 @@ class DisconnectReasonsSuggestion extends Component {
 
 			case 'reason2':
 				options = [
-				{ value: 'default', label: 'sth1' },
-				{ value: 'reason2_followup_sth2', label: 'sth2' },
-				{ value: 'reason2_followup_sth3', label: 'sth3' },
+					{ value: 'default', label: 'sth1' },
+					{ value: 'reason2_followup_sth2', label: 'sth2' },
+					{ value: 'reason2_followup_sth3', label: 'sth3' },
 				];
 				break;
 
 			case 'reason3':
 				options = [
-				{ value: 'default', label: 'sth banana' },
-				{ value: 'reason3_followup_sth2', label: 'sth2' },
+					{ value: 'default', label: 'sth banana' },
+					{ value: 'reason3_followup_sth2', label: 'sth2' },
 				];
 				break;
 
 			case 'reason4':
 				options = [
-				{ value: 'default', label: 'sth1 reason4' },
-				{ value: 'reason4_followup_sth2', label: 'sth2' },
-				{ value: 'reason4_followup_sth3', label: 'sth3' },
+					{ value: 'default', label: 'sth1 reason4' },
+					{ value: 'reason4_followup_sth2', label: 'sth2' },
+					{ value: 'reason4_followup_sth3', label: 'sth3' },
 				];
 				break;
 
 			case 'reason5':
 				options = [
-				{ value: 'default', label: 'sth reason5' },
-				{ value: 'reason5_followup_sth2', label: 'sth2' },
+					{ value: 'default', label: 'sth reason5' },
+					{ value: 'reason5_followup_sth2', label: 'sth2' },
 				];
 				break;
 
 			case 'reason6':
 				options = [
-				{ value: 'default', label: 'sth1 reason6' },
-				{ value: 'reason6_followup_sth2', label: 'sth2' },
-				{ value: 'reason6_followup_sth3', label: 'sth3' },
+					{ value: 'default', label: 'sth1 reason6' },
+					{ value: 'reason6_followup_sth2', label: 'sth2' },
+					{ value: 'reason6_followup_sth3', label: 'sth3' },
 				];
 				break;
 
 			case 'reason7':
 				options = [
-				{ value: 'default', label: 'sth reason7' },
-				{ value: 'reason7_followup_sth2', label: 'sth2' },
+					{ value: 'default', label: 'sth reason7' },
+					{ value: 'reason7_followup_sth2', label: 'sth2' },
 				];
 				break;
 
 			case 'reason8':
 				options = [
-				{ value: 'default', label: 'sth reason8' },
-				{ value: 'reason8_followup_sth2', label: 'sth2' },
+					{ value: 'default', label: 'sth reason8' },
+					{ value: 'reason8_followup_sth2', label: 'sth2' },
 				];
 				break;
 		}
 		return options;
-	}
-	setQuestion = ( optionValue ) => {
-		const {
-			translate
-		} = this.props;
+	};
+	setQuestion = optionValue => {
+		const { translate } = this.props;
 
-		let textShareWhat =	'';
+		let textShareWhat = '';
 		switch ( optionValue ) {
 			case 'missingFeature':
 				textShareWhat = translate( 'What feature are you looking for?' );
@@ -131,42 +130,33 @@ class DisconnectReasonsSuggestion extends Component {
 				break;
 		}
 		return textShareWhat;
-	}
+	};
 	render() {
-		const {
-			compactButtons,
-			optionSelected
-		} = this.props;
-		const {
-			childSelected
-		} = this.state;
+		const { compactButtons, optionSelected } = this.props;
+		const { childSelected } = this.state;
 
 		const options = this.setOptions( optionSelected );
 		return (
 			<div>
-
 				<div className="why__card question follow-up">
 					{ this.setQuestion( optionSelected ) }
 				</div>
 
 				<div className="why__card dropdown">
 					<SelectDropdown
-							compact={ compactButtons }
-							onSelect={ this._logReasonFollowUp }
-							options={ options }
-							selectedText={ childSelected.value }
-							initialSelected= { childSelected }
+						compact={ compactButtons }
+						onSelect={ this._logReasonFollowUp }
+						options={ options }
+						selectedText={ childSelected.value }
+						initialSelected={ childSelected }
 					/>
 				</div>
-
 			</div>
 		);
 	}
 }
 
-export default connect(
-	( state ) => ( {
-		siteIsJetpack: isJetpackSite( state, getSelectedSiteId( state ) ),
-		siteSlug: getSelectedSiteSlug( state ),
-	} )
-)( localize( DisconnectReasonsSuggestion ) );
+export default connect( state => ( {
+	siteIsJetpack: isJetpackSite( state, getSelectedSiteId( state ) ),
+	siteSlug: getSelectedSiteSlug( state ),
+} ) )( localize( DisconnectReasonsSuggestion ) );
